@@ -179,7 +179,17 @@ public class JatekVezerlo {
     
     
     private void KilepesMenu() {
-
+        String msg = "Biztosan ki szeretnél lépni?";
+        String cim = "Kilépés megerősítése";
+        int msgTip = JOptionPane.QUESTION_MESSAGE;
+        int optTip = JOptionPane.YES_NO_OPTION;
+        
+        int gomb = JOptionPane.showConfirmDialog(nezet, msg, cim, optTip, msgTip);
+        
+        
+        if (gomb == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }
 
 }
