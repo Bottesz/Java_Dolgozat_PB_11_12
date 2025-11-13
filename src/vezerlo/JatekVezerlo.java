@@ -17,6 +17,7 @@ public class JatekVezerlo {
     private int korok = 0;
     private JButton[][] gombok;
     private Random rnd = new Random();
+    private boolean[][] kezdoAllapot = new boolean[3][3];
 
     public JatekVezerlo(JatekNezet nezet, JatekModell modell) {
         this.nezet = nezet;
@@ -30,7 +31,7 @@ public class JatekVezerlo {
         };
 
         nezet.getjButton1().addActionListener(e -> Indit());
-
+        nezet.getJbtUjra().addActionListener(e -> Ujra());
         nezet.getFileMentesMenu().addActionListener(e -> FileMentes());
         nezet.getBetoltesMenu().addActionListener(e -> BetoltesMenu());
         nezet.getKilepesMenu().addActionListener(e -> KilepesMenu());
@@ -55,19 +56,38 @@ public class JatekVezerlo {
 
     private void Indit() {
         modell.reset();
-
-        java.util.Random rnd = new java.util.Random();
+        korok = 0;
+        nezet.getjTextField2().setText("0");
+        nezet.getjTextField3().setText("");
+        
+        
+        kezdoAllapot = new boolean[3][3];
+        Random rnd = new Random();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (rnd.nextBoolean()) {
                     modell.kapcsol(i, j);
+                    kezdoAllapot[i][j] = true;
                 }
             }
         }
 
+        frissit();
+    }
+
+    private void Ujra() {
+        modell.reset();
         korok = 0;
         nezet.getjTextField2().setText("0");
         nezet.getjTextField3().setText("");
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (kezdoAllapot[i][j]) {
+                    modell.kapcsol(i, j);
+                }
+            }
+        }
         frissit();
     }
 
@@ -139,35 +159,32 @@ public class JatekVezerlo {
 
     }
 
-    
-    
     private void BetoltesMenu() {
         JFileChooser jfc = new JFileChooser(System.getProperty("user.dir"));
         int gomb = jfc.showOpenDialog(nezet);
-        
+
         if (gomb == JFileChooser.APPROVE_OPTION) {
             java.io.File kivalasztottFajl = jfc.getSelectedFile();
-            
+
             try {
                 String tartalom = java.nio.file.Files.readString(kivalasztottFajl.toPath());
                 System.out.println("Beolvasott tartalom:\n" + tartalom);
-                
-                
+
                 String[] sorok = tartalom.strip().split("\\n");
                 korok = Integer.parseInt(sorok[0]);
                 nezet.getjTextField2().setText(String.valueOf(korok));
-                
+
                 modell.reset();
                 for (int i = 0; i < 3; i++) {
                     String[] oszlopok = sorok[i + 1].trim().split(" ");
                     for (int j = 0; j < 3; j++) {
                         boolean allapot = oszlopok[j].equals("1");
                         if (allapot) {
-                            modell.kapcsol(i,j);
+                            modell.kapcsol(i, j);
                         }
                     }
                 }
-                
+
                 frissit();
                 JOptionPane.showMessageDialog(nezet, "A Játék sikeresen betöltve");
             } catch (Exception ex) {
@@ -176,17 +193,14 @@ public class JatekVezerlo {
         }
     }
 
-    
-    
     private void KilepesMenu() {
         String msg = "Biztosan ki szeretnél lépni?";
         String cim = "Kilépés megerősítése";
         int msgTip = JOptionPane.QUESTION_MESSAGE;
         int optTip = JOptionPane.YES_NO_OPTION;
-        
+
         int gomb = JOptionPane.showConfirmDialog(nezet, msg, cim, optTip, msgTip);
-        
-        
+
         if (gomb == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
