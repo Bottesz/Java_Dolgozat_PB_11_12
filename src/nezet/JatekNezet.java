@@ -18,6 +18,19 @@ public class JatekNezet extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
+    public JMenuItem getBetoltesMenu() {
+        return BetoltesMenu;
+    }
+
+    public JMenuItem getFileMentesMenu() {
+        return FileMentesMenu;
+    }
+
+    public JMenuItem getKilepesMenu() {
+        return KilepesMenu;
+    }
+    
+    
     public JButton getJbtUjra() {
         return JbtUjra;
     }
@@ -83,15 +96,15 @@ public class JatekNezet extends javax.swing.JFrame {
     }
 
     public JMenuItem getjMenuItem1() {
-        return jMenuItem1;
+        return FileMentesMenu;
     }
 
     public JMenuItem getjMenuItem2() {
-        return jMenuItem2;
+        return BetoltesMenu;
     }
 
     public JMenuItem getjMenuItem3() {
-        return jMenuItem3;
+        return KilepesMenu;
     }
 
     public JPanel getjPanel1() {
@@ -142,9 +155,9 @@ public class JatekNezet extends javax.swing.JFrame {
         JbtUjra = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        FileMentesMenu = new javax.swing.JMenuItem();
+        BetoltesMenu = new javax.swing.JMenuItem();
+        KilepesMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -292,19 +305,19 @@ public class JatekNezet extends javax.swing.JFrame {
 
         jMenu1.setText("Kezdőlap");
 
-        jMenuItem1.setText("Fileba mentes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        FileMentesMenu.setText("Fileba mentes");
+        FileMentesMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                FileMentesMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(FileMentesMenu);
 
-        jMenuItem2.setText("Betöltés");
-        jMenu1.add(jMenuItem2);
+        BetoltesMenu.setText("Betöltés");
+        jMenu1.add(BetoltesMenu);
 
-        jMenuItem3.setText("Kilépés");
-        jMenu1.add(jMenuItem3);
+        KilepesMenu.setText("Kilépés");
+        jMenu1.add(KilepesMenu);
 
         jMenuBar1.add(jMenu1);
 
@@ -338,9 +351,9 @@ public class JatekNezet extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowClosing
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void FileMentesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileMentesMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_FileMentesMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,7 +361,10 @@ public class JatekNezet extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem BetoltesMenu;
+    private javax.swing.JMenuItem FileMentesMenu;
     private javax.swing.JButton JbtUjra;
+    private javax.swing.JMenuItem KilepesMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -364,9 +380,6 @@ public class JatekNezet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
