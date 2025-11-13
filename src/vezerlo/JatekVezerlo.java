@@ -142,7 +142,38 @@ public class JatekVezerlo {
     
     
     private void BetoltesMenu() {
-
+        JFileChooser jfc = new JFileChooser(System.getProperty("user.dir"));
+        int gomb = jfc.showOpenDialog(nezet);
+        
+        if (gomb == JFileChooser.APPROVE_OPTION) {
+            java.io.File kivalasztottFajl = jfc.getSelectedFile();
+            
+            try {
+                String tartalom = java.nio.file.Files.readString(kivalasztottFajl.toPath());
+                System.out.println("Beolvasott tartalom:\n" + tartalom);
+                
+                
+                String[] sorok = tartalom.strip().split("\\n");
+                korok = Integer.parseInt(sorok[0]);
+                nezet.getjTextField2().setText(String.valueOf(korok));
+                
+                modell.reset();
+                for (int i = 0; i < 3; i++) {
+                    String[] oszlopok = sorok[i + 1].trim().split(" ");
+                    for (int j = 0; j < 3; j++) {
+                        boolean allapot = oszlopok[j].equals("1");
+                        if (allapot) {
+                            modell.kapcsol(i,j);
+                        }
+                    }
+                }
+                
+                frissit();
+                JOptionPane.showMessageDialog(nezet, "A Játék sikeresen betöltve");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(nezet, "Hiba a játék betöltése során: " + ex.getMessage());
+            }
+        }
     }
 
     
